@@ -2,9 +2,13 @@
   "name": "GBooks",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "back": "nodemon --ignore 'client/*'",
+    "client": "cd client && npm run start"
   },
   "repository": {
     "type": "git",
@@ -16,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/Code-Tim/GBooks/issues"
   },
-  "homepage": "https://github.com/Code-Tim/GBooks#readme"
+  "homepage": "https://github.com/Code-Tim/GBooks#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
 }
